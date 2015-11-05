@@ -57,6 +57,7 @@ class PanelView : UIView {
         
         let label = UILabel()
         label.text = "Amplitude: "
+        label.font = UIFont(name: "Palatino", size: 24)
         addSubview(label)
         self.label = label
         
@@ -64,6 +65,7 @@ class PanelView : UIView {
         segmented.insertSegmentWithTitle("Red", atIndex: 0, animated: false)
         segmented.insertSegmentWithTitle("Blue", atIndex: 1, animated: false)
         segmented.insertSegmentWithTitle("Green", atIndex: 2, animated: false)
+        segmented.selectedSegmentIndex = 0
         segmented.addTarget(self, action: "segmentedSwitched:", forControlEvents: UIControlEvents.ValueChanged)
         addSubview(segmented)
         self.segmented = segmented
@@ -105,10 +107,12 @@ class PanelView : UIView {
     func switchToggled() {
         if self.stepper.enabled {
             self.stepper.enabled = false
+            self.stepper.alpha = 0.5
             self.slider.enabled = false
         }
         else {
             self.stepper.enabled = true
+            self.stepper.alpha = 1
             self.slider.enabled = true
         }
         
